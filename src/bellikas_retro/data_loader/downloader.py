@@ -24,7 +24,7 @@ DATA_DIR.mkdir(exist_ok=True)
 # Move to github env and workflow
 load_dotenv(PROJECT_ROOT / ".env")
 
-# Function to download the CSV dataset
+# Function to download the CSV dataset, call with download_dataset()
 def download_dataset() -> None:
     if not os.getenv("KAGGLE_API_TOKEN"):
         raise RuntimeError("Missing KAGGLE_API_TOKEN")
