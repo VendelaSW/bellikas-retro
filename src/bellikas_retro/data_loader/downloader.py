@@ -1,31 +1,19 @@
 from pathlib import Path
+from utils import PROJECT_ROOT, DATA_DIR, CSV_NAME
 import os
 import shutil
 
 from dotenv import load_dotenv
 import kagglehub
 
-
-# Move to utils/helpers.py
-def _project_root() -> Path:
-    here = Path(__file__).resolve()
-    for p in (here, *here.parents):
-        if (p / "pyproject.toml").exists():
-            return p
-    raise RuntimeError("Could not locate project root")
-
-
-# Move to config
-CSV_NAME = "vgsales.csv"
-PROJECT_ROOT = _project_root()
-DATA_DIR = PROJECT_ROOT / "data"
-DATA_DIR.mkdir(exist_ok=True)
-
 # Move to github env and workflow
 load_dotenv(PROJECT_ROOT / ".env")
 
 # Function to download the CSV dataset, call with download_dataset()
 def download_dataset() -> None:
+
+    DATA_DIR.mkdir(exist_ok=True)
+
     if not os.getenv("KAGGLE_API_TOKEN"):
         raise RuntimeError("Missing KAGGLE_API_TOKEN")
 
