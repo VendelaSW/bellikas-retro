@@ -5,7 +5,7 @@ from typing import Iterable, Optional, Union
 import pandas as pd
 
 # Usage:
-# loader = VGSalesDataLoader(data_dir=Path("data"))
+# loader = DataLoader(data_dir=Path("data"))
 #
 # # Load entire dataset (cached after first call)
 # df = loader.load()
@@ -15,7 +15,7 @@ import pandas as pd
 
 
 @dataclass
-class VGSalesDataLoader:
+class DataLoader:
     # Directory containing the dataset.
     data_dir: Path
 
