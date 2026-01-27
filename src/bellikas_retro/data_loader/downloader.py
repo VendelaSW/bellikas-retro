@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import shutil
+from utils import _project_root
 
 from dotenv import load_dotenv
 import kagglehub
