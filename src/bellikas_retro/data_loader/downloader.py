@@ -1,19 +1,10 @@
 from pathlib import Path
 import os
 import shutil
+from utils import _project_root
 
 from dotenv import load_dotenv
 import kagglehub
-
-
-# Move to utils/helpers.py
-def _project_root() -> Path:
-    here = Path(__file__).resolve()
-    for p in (here, *here.parents):
-        if (p / "pyproject.toml").exists():
-            return p
-    raise RuntimeError("Could not locate project root")
-
 
 # Move to config
 CSV_NAME = "vgsales.csv"
