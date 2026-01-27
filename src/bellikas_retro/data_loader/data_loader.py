@@ -5,6 +5,9 @@ from typing import Iterable, Optional, Union
 import pandas as pd
 
 # Usage:
+#
+# from pathlib import Path
+#
 # loader = DataLoader(data_dir=Path("data"))
 #
 # # Load entire dataset (cached after first call)
@@ -12,6 +15,14 @@ import pandas as pd
 #
 # # Query by platform
 # wii_games = loader.query(platform="Wii")
+# console_games = loader.query(platform=["Wii", "PS2", "PS3"])
+#
+# # Advanced Query
+# hits = loader.query(
+#     platform=["PS2", "PS3"],
+#     year=range(2005, 2011),
+#     genre="Action",
+# )
 
 
 @dataclass
@@ -64,14 +75,16 @@ class DataLoader:
         df = self.load()
 
         # Normalize filter inputs into sets so .isin() can be used consistently
+        # {"Wii","PS2"}
+        # {2000,2001,2002}
+        # None
         def _as_set(x):
             if x is None:
                 return None
             if isinstance(x, (str, bytes)):
                 return {x}
-            if isinstance(x, range):
-                return set(x)
             return set(x)
+
 
         # Convert user-provided filters into sets
         platforms = _as_set(platform)
