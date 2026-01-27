@@ -1,22 +1,19 @@
 from pathlib import Path
+from utils import PROJECT_ROOT, DATA_DIR
 import os
 import shutil
-from utils import _project_root
 
 from dotenv import load_dotenv
 import kagglehub
-
-# Move to config
-CSV_NAME = "vgsales.csv"
-PROJECT_ROOT = _project_root()
-DATA_DIR = PROJECT_ROOT / "data"
-DATA_DIR.mkdir(exist_ok=True)
 
 # Move to github env and workflow
 load_dotenv(PROJECT_ROOT / ".env")
 
 # Function to download the CSV dataset, call with download_dataset()
 def download_dataset() -> None:
+
+    DATA_DIR.mkdir(exist_ok=True)
+
     if not os.getenv("KAGGLE_API_TOKEN"):
         raise RuntimeError("Missing KAGGLE_API_TOKEN")
 
