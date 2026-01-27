@@ -4,4 +4,4 @@ def main():
     import bellikas_retro.app as app
 
     app_path = inspect.getfile(app)
-    stcli.main(["streamlit", "run", app_path])
+    stcli.main(["run", app_path])
