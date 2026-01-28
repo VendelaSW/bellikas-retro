@@ -1,11 +1,13 @@
 """
 Bellika's Retro - Skeleton Streamlit App
 """
-
+from data_loader import download_dataset
 import streamlit as st
 import pandas as pd
 import numpy as np
 
+
+download_dataset()
 # ====================
 # SESSION STATE
 # ====================

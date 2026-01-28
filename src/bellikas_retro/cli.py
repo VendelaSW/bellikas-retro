@@ -1,7 +1,9 @@
 def main():
     import inspect
-    from streamlit.web import cli as stcli
-    import bellikas_retro.app as app
+    import os
+    #from streamlit.web import cli as stcli
+    from . import app
 
     app_path = inspect.getfile(app)
-    stcli.main(["run", app_path])
+    #stcli.main(["run", app_path])
+    os.system("python -m streamlit run", app_path)
