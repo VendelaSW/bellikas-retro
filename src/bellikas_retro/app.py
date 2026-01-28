@@ -1,11 +1,16 @@
 """
 Bellika's Retro - Skeleton Streamlit App
 """
-
+from bellikas_retro.data_loader import download_dataset, DataLoader
 import streamlit as st
 import pandas as pd
 import numpy as np
+from pathlib import Path
 
+
+
+
+download_dataset()
 # ====================
 # SESSION STATE
 # ====================
@@ -20,24 +25,10 @@ for key in ["region", "year_range"]:
 def load_data():
     # Placeholder for real CSV load
     # df = pd.read_csv("video_game_sales.csv")
-    # For now, generate a dummy dataframe
-    years = list(range(1980, 2021))  # 41 items
+    loader = DataLoader(data_dir=Path("data"))
 
-    data = {
-        "Rank": range(1, 42),  # 41 items
-        "Name": [f"Game {i}" for i in range(1, 42)],  # 41 items
-        "Platform": (["PC", "PS4", "Xbox"] * 14)[:41],  # multiply enough then slice exactly 41
-        "Year": years,
-        "Genre": (["Action", "Adventure", "RPG", "Sports", "Puzzle"] * 9)[:41],  # 41 items
-        "Publisher": (["Publisher A", "Publisher B", "Publisher C"] * 14)[:41],  # 41 items
-        "NA_Sales": np.random.rand(41),
-        "EU_Sales": np.random.rand(41),
-        "JP_Sales": np.random.rand(41),
-        "Other_Sales": np.random.rand(41),
-        "Global_Sales": np.random.rand(41),
-    }
-
-    return pd.DataFrame(data)
+    df = loader.load()
+    return pd.DataFrame(df)
 
 df = load_data()
 
