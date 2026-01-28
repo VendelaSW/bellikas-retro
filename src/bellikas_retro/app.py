@@ -37,6 +37,9 @@ df = load_data()
 # ====================
 st.title("Bellika's Retro: Retro Game Sales Dashboard")
 
+# Display static image
+st.markdown("![Kingen](app/static/kingen.jpeg)")
+
 # Sidebar controls
 st.sidebar.header("Filters")
 
