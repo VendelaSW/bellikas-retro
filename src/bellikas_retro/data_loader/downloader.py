@@ -1,5 +1,5 @@
 from pathlib import Path
-from utils import PROJECT_ROOT, DATA_DIR, CSV_NAME
+from ..utils import PROJECT_ROOT, DATA_DIR, CSV_NAME
 import os
 import shutil
 
