@@ -12,7 +12,7 @@ import streamlit.components.v1 as components
 
 
 
-download_dataset()
+
 # ====================
 # SESSION STATE
 # ====================
@@ -23,6 +23,7 @@ for key in ["region", "year_range"]:
 # ====================
 # DATA LOADING
 # ====================
+download_dataset()
 @st.cache_data
 def load_data():
     # Placeholder for real CSV load
@@ -42,20 +43,22 @@ st.markdown("![neon](app/static/neonsign.png)")
 
 st.title("Bellika's Retro: Retro Game Sales Dashboard")
 
-# Sidebar controls
-st.sidebar.header("Filters")
+# ====================
+# MAIN DISPLAY
+# ====================
 
-# Slider for year range
-year_min, year_max = int(df['Year'].min()), int(df['Year'].max())
-st.session_state.year_range = st.sidebar.slider(
-    "Select release year range",
-    year_min, year_max, (year_min, year_max)
-)
+# ======= Table placeholder =======
+
+table_placeholder = st.empty()
+
+# ============================
+# CONTROLS
+# ============================
 
 # Select region
-st.session_state.region = st.sidebar.radio(
+region = st.radio(
     "Select region to display sales",
-    ("NA", "EU", "JP")
+    ("NA", "EU", "JP","OTHER","GLOBAL")
 )
 
 # ====================
@@ -71,16 +74,31 @@ filtered_df = df[
 region_map = {
     "NA": "NA_Sales",
     "EU": "EU_Sales",
-    "JP": "JP_Sales"
+    "JP": "JP_Sales",
+    "OTHER": "Other_Sales",
+    "GLOBAL": "Global_Sales"
 }
-sales_col = region_map[st.session_state.region]
+sales_col = region_map[region]
 
-# ====================
-# MAIN DISPLAY
-# ====================
-st.header(f"Top Games by {st.session_state.region} Sales")
+# Year slider ===========
+years = sorted(df["Year"].dropna().unique())
+selected_year = st.select_slider(
+    "Release Year", 
+    options=years,
+    value=years[0]
+    )
 
-st.dataframe(
+# =======================
+# FILTER DATA
+# =======================
+
+filtered_df = df[df["Year"] == selected_year]
+
+# =======================
+# UPDATE TABLE PLACEHOLDER
+# =======================
+
+table_placeholder.dataframe(
     filtered_df[["Rank", "Name", "Platform", "Year", sales_col]].sort_values(
         by=sales_col, ascending=False
     )
