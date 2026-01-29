@@ -61,6 +61,7 @@ st.session_state.region = st.sidebar.radio(
 # ====================
 # FILTER DATA
 # ====================
+
 filtered_df = df[
     (df["Year"] >= st.session_state.year_range[0]) &
     (df["Year"] <= st.session_state.year_range[1])
@@ -85,6 +86,22 @@ st.dataframe(
     )
 )
 
+# Year slider
+years = sorted(df["Year"].dropna().unique())
+selected_year = st.select_slider(
+    "Release Year", 
+    options=years,
+    value=years[0]
+    )
+
+filtered_df_by_slider = filtered_df[filtered_df["Year"] == selected_year]
+
+st.write(f"Games from {selected_year}:")
+st.dataframe(
+    filtered_df_by_slider[["Rank", "Name", "Platform", "Year", sales_col]].sort_values(
+        by=sales_col, ascending=False
+    )
+)
 # Placeholder for map (could later use plotly or pydeck)
 st.header(f"Interactive Sales Map ({st.session_state.region})")
 st.write("Map feature coming here... for now just a placeholder")
