@@ -7,6 +7,8 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
+import streamlit as st
+import streamlit.components.v1 as components
 
 
 
@@ -35,6 +37,9 @@ df = load_data()
 # ====================
 # LAYOUT
 # ====================
+
+st.markdown("![neon](app/static/neonsign.png)")
+
 st.title("Bellika's Retro: Retro Game Sales Dashboard")
 
 # Sidebar controls
