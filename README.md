@@ -47,20 +47,38 @@ If any of the following are applicable to your project, then the directory struc
 └── .gitignore
 ```
 
-
 ## Install
 
-Via Composer
+**1. Create and activate a virtual environment:**
 
-``` bash
-$ composer require :vendor/:package_name
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+**2. Install the project:**
+
+```bash
+pip install -e .
 ```
 
 ## Usage
 
-``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+**Run:**
+
+```bash
+bellikas_retro
+```
+
+**Run as a module:**
+
+```bash
+python -m bellikas_retro
+```
+
+**Uninstall the project:**
+```bash
+pip uninstall bellikas_retro
 ```
 
 ## Change log
