@@ -2,6 +2,7 @@
 Bellika's Retro - Skeleton Streamlit App
 """
 from bellikas_retro.data_loader import download_dataset, DataLoader
+from bellikas_retro.utils.helpers import nostalgia_age_filter
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -53,6 +54,16 @@ table_placeholder = st.empty()
 # CONTROLS
 # ============================
 
+# Toggle
+on = st.toggle("Activate Nostalgia Age Filter")
+
+
+# Age input
+age_input = st.number_input("Insert age",min_value=17, max_value=60)
+st.write("The current age is ", age_input)
+
+age_range = nostalgia_age_filter(int(age_input))
+
 # Select region
 region = st.radio(
     "Select region to display sales",
@@ -80,7 +91,11 @@ selected_year = st.select_slider(
 # FILTER DATA
 # =======================
 
-filtered_df = df[df["Year"] == selected_year]
+if on:
+    filtered_df = df[df["Year"].isin(age_range)]
+else:
+    filtered_df = df[df["Year"] == selected_year]
+
 
 # =======================
 # UPDATE TABLE PLACEHOLDER
