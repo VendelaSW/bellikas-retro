@@ -89,7 +89,7 @@ filtered_df = df[df["Year"] == selected_year]
 table_placeholder.dataframe(
     filtered_df[["Rank", "Name", "Platform", "Year", sales_col]].sort_values(
         by=sales_col, ascending=False
-    )
+    ), hide_index=True
 )
 
 # Placeholder for map (could later use plotly or pydeck)
