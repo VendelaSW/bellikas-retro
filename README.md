@@ -53,7 +53,8 @@ If any of the following are applicable to your project, then the directory struc
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate (POSIX)
+source .venv/Scripts/activate (Windows)
 ```
 
 **2. Install the project:**
