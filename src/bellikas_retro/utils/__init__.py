@@ -1,9 +1,10 @@
 from .helpers import _project_root
-from .config import PROJECT_ROOT, CSV_NAME, DATA_DIR
+from .config import PROJECT_ROOT, CSV_NAME, DATA_DIR, KAGGLE_DATASET_PATH
 
 __all__ = [
     "_project_root",
     "PROJECT_ROOT",
     "CSV_NAME",
-    "DATA_DIR"
+    "DATA_DIR",
+    "KAGGLE_DATASET_PATH"
 ]

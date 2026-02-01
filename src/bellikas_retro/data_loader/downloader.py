@@ -1,5 +1,5 @@
 from pathlib import Path
-from ..utils import PROJECT_ROOT, DATA_DIR, CSV_NAME
+from ..utils import PROJECT_ROOT, DATA_DIR, CSV_NAME, KAGGLE_DATASET_PATH
 import os
 import shutil
 
@@ -17,7 +17,7 @@ def download_dataset() -> None:
     if not os.getenv("KAGGLE_API_TOKEN"):
         raise RuntimeError("Missing KAGGLE_API_TOKEN")
 
-    dataset_dir = Path(kagglehub.dataset_download("gregorut/videogamesales"))
+    dataset_dir = Path(kagglehub.dataset_download(KAGGLE_DATASET_PATH))
 
     source = dataset_dir / CSV_NAME
     destination = DATA_DIR / CSV_NAME
