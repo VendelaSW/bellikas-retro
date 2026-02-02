@@ -1,5 +1,6 @@
 from pathlib import Path
 import pandas as pd
+import os
 
 def _project_root() -> Path:
     here = Path(__file__).resolve()
@@ -7,6 +8,10 @@ def _project_root() -> Path:
         if (p / "pyproject.toml").exists():
             return p
     raise RuntimeError("Could not locate project root")
+
+def _is_ci() -> bool:
+    return os.getenv("CI", "").strip().lower() in {"1", "true", "yes"}
+
 # ---------------------------
 # nostalgia age: Years set (8–14)
 # ---------------------------
