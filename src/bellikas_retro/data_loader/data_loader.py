@@ -51,8 +51,16 @@ class DataLoader:
             # Read the CSV file into a DataFrame.
             df = pd.read_csv(self.path)
 
+            # Drop empty rows.
+            df = df.dropna(how="all")
+
             # Normalize column names once to avoid repeated cleanup later.
             df.columns = [c.strip() for c in df.columns]
+
+            # Iterate columns whose dtype is object.
+            for col in df.select_dtypes(include=["object"]).columns:
+                # Strings to pandas’ nullable string dtype -> Strip leading and trailing whitespace -> Convert empty strings into panda missing values.
+                df[col] = df[col].astype("string").str.strip().replace("", pd.NA)
 
             # Convert Year to a numeric, nullable integer type to prevent malformed year values.
             if "Year" in df.columns:
@@ -74,7 +82,7 @@ class DataLoader:
         # Ensure the dataset is loaded (from cache or disk)
         df = self.load()
 
-        # Normalize filter inputs into sets so .isin() can be used consistently
+        # Normalize filter inputs into sets so .isin() can be used consistently.
         # {"Wii","PS2"}
         # {2000,2001,2002}
         # None
@@ -86,25 +94,25 @@ class DataLoader:
             return set(x)
 
 
-        # Convert user-provided filters into sets
+        # Convert user-provided filters into sets.
         platforms = _as_set(platform)
         years = _as_set(year)
         genres = _as_set(genre)
 
-        # Start with the full dataset and progressively filter it
+        # Start with the full dataset and progressively filter it.
         out = df
 
-        # Apply platform filter if provided
+        # Apply platform filter if provided.
         if platforms is not None:
             out = out[out["Platform"].isin(platforms)]
 
-        # Apply year filter if provided
+        # Apply year filter if provided.
         if years is not None:
             out = out[out["Year"].isin(years)]
 
-        # Apply genre filter if provided
+        # Apply genre filter if provided.
         if genres is not None:
             out = out[out["Genre"].isin(genres)]
 
-        # Return a filtered COPY with a clean index.
+        # Return a new filtered DataFrame with a clean index.
         return out.reset_index(drop=True)
