@@ -2,7 +2,7 @@
 Bellika's Retro - Skeleton Streamlit App
 """
 from bellikas_retro.data_loader import download_dataset, DataLoader
-from bellikas_retro.utils.helpers import nostalgia_age_filter
+from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 import streamlit as st
 import pandas as pd
 import numpy as np
