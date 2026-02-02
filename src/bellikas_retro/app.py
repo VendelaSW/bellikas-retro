@@ -54,9 +54,12 @@ table_placeholder = st.empty()
 # CONTROLS
 # ============================
 
-# Toggle
-on = st.toggle("Activate Nostalgia Age Filter")
+col1, col2 = st.columns(2)
 
+with col1:
+    on = st.toggle("Activate Nostalgia Age Filter")
+with col2:
+    sales_on = st.toggle("Activate Min Sales Filter")
 
 # Age input
 age_input = st.number_input("Insert age",min_value=17, max_value=60)
@@ -91,13 +94,20 @@ selected_year = st.select_slider(
 # FILTER DATA
 # =======================
 
-filtered_df = filter_sales(df=df, region=sales_col, minimum=1.0)
+filtered_df = df.copy()
 
+#  Optional filters
 if on:
-    filtered_df = filtered_df[df["Year"].isin(age_range)]
+    filtered_df = filtered_df[filtered_df["Year"].isin(age_range)]
 else:
     filtered_df = filtered_df[df["Year"] == selected_year]
 
+if sales_on:
+    filtered_df = filter_sales(
+        df=filtered_df, 
+        region=sales_col, 
+        minimum=1.0
+    )
 
 # =======================
 # UPDATE TABLE PLACEHOLDER
