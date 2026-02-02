@@ -1,0 +1,23 @@
+name: Bellikas Retro CI
+
+# Trigger on push/pull to dev
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+# Set env to skip data download
+env:
+  SKIP_DATA_DOWNLOAD: "1"
+
+jobs:
+  # Check that env is correct
+  check-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env var
+        run: |
+          echo "SKIP_DATA_DOWNLOAD=$SKIP_DATA_DOWNLOAD"
+          test "$SKIP_DATA_DOWNLOAD" = "1"
