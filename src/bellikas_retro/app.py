@@ -91,10 +91,12 @@ selected_year = st.select_slider(
 # FILTER DATA
 # =======================
 
+filtered_df = filter_sales(df=df, region=sales_col, minimum=1.0)
+
 if on:
-    filtered_df = df[df["Year"].isin(age_range)]
+    filtered_df = filtered_df[df["Year"].isin(age_range)]
 else:
-    filtered_df = df[df["Year"] == selected_year]
+    filtered_df = filtered_df[df["Year"] == selected_year]
 
 
 # =======================
