@@ -2,6 +2,7 @@
 Bellika's Retro - Skeleton Streamlit App
 """
 from bellikas_retro.data_loader import download_dataset, DataLoader
+from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -11,8 +12,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 
-
-download_dataset()
 # ====================
 # SESSION STATE
 # ====================
@@ -23,6 +22,7 @@ for key in ["region", "year_range"]:
 # ====================
 # DATA LOADING
 # ====================
+download_dataset()
 @st.cache_data
 def load_data():
     # Placeholder for real CSV load
@@ -42,47 +42,81 @@ st.markdown("![neon](app/static/neonsign.png)")
 
 st.title("Bellika's Retro: Retro Game Sales Dashboard")
 
-# Sidebar controls
-st.sidebar.header("Filters")
-
-# Slider for year range
-year_min, year_max = int(df['Year'].min()), int(df['Year'].max())
-st.session_state.year_range = st.sidebar.slider(
-    "Select release year range",
-    year_min, year_max, (year_min, year_max)
-)
-
-# Select region
-st.session_state.region = st.sidebar.radio(
-    "Select region to display sales",
-    ("NA", "EU", "JP")
-)
-
-# ====================
-# FILTER DATA
-# ====================
-filtered_df = df[
-    (df["Year"] >= st.session_state.year_range[0]) &
-    (df["Year"] <= st.session_state.year_range[1])
-]
-
-# Map region selection to sales column
-region_map = {
-    "NA": "NA_Sales",
-    "EU": "EU_Sales",
-    "JP": "JP_Sales"
-}
-sales_col = region_map[st.session_state.region]
-
 # ====================
 # MAIN DISPLAY
 # ====================
-st.header(f"Top Games by {st.session_state.region} Sales")
 
-st.dataframe(
+# ======= Table placeholder =======
+
+table_placeholder = st.empty()
+
+# ============================
+# CONTROLS
+# ============================
+
+col1, col2 = st.columns(2)
+
+with col1:
+    on = st.toggle("Activate Nostalgia Age Filter")
+with col2:
+    sales_on = st.toggle("Activate Min Sales Filter")
+
+# Age input
+age_input = st.number_input("Insert age",min_value=17, max_value=60)
+st.write("The current age is ", age_input)
+
+age_range = nostalgia_age_filter(int(age_input))
+
+# Select region
+region = st.radio(
+    "Select region to display sales",
+    ("NA", "EU", "JP","OTHER","GLOBAL")
+)
+
+region_map = {
+    "NA": "NA_Sales",
+    "EU": "EU_Sales",
+    "JP": "JP_Sales",
+    "OTHER": "Other_Sales",
+    "GLOBAL": "Global_Sales"
+}
+sales_col = region_map[region]
+
+# Year slider ===========
+years = sorted(df["Year"].dropna().unique())
+selected_year = st.select_slider(
+    "Release Year", 
+    options=years,
+    value=years[0]
+    )
+
+# =======================
+# FILTER DATA
+# =======================
+
+filtered_df = df.copy()
+
+#  Optional filters
+if on:
+    filtered_df = filtered_df[filtered_df["Year"].isin(age_range)]
+else:
+    filtered_df = filtered_df[df["Year"] == selected_year]
+
+if sales_on:
+    filtered_df = filter_sales(
+        df=filtered_df, 
+        region=sales_col, 
+        minimum=1.0
+    )
+
+# =======================
+# UPDATE TABLE PLACEHOLDER
+# =======================
+
+table_placeholder.dataframe(
     filtered_df[["Rank", "Name", "Platform", "Year", sales_col]].sort_values(
         by=sales_col, ascending=False
-    )
+    ), hide_index=True
 )
 
 # Placeholder for map (could later use plotly or pydeck)
