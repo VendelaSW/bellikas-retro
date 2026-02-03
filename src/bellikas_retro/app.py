@@ -8,7 +8,6 @@ import pandas as pd
 import numpy as np
 from pathlib import Path
 
-import streamlit as st
 import streamlit.components.v1 as components
 
 
@@ -25,10 +24,7 @@ for key in ["region", "year_range"]:
 download_dataset()
 @st.cache_data
 def load_data():
-    # Placeholder for real CSV load
-    # df = pd.read_csv("video_game_sales.csv")
     loader = DataLoader(data_dir=Path("data"))
-
     df = loader.load()
     return pd.DataFrame(df)
 
@@ -37,14 +33,26 @@ df = load_data()
 # ====================
 # LAYOUT
 # ====================
-
+st.set_page_config(layout="centered")
 st.markdown("![neon](app/static/neonsign.png)")
-
-st.title("Bellika's Retro: Retro Game Sales Dashboard")
 
 # ====================
 # MAIN DISPLAY
 # ====================
+
+# ====== Sales per year chart ======
+
+chart_container = st.container()
+chart_container.empty()
+
+
+# ====== Genre/Platform comparison chart ======
+
+
+
+# ====== Top 10 chart ======
+
+
 
 # ======= Table placeholder =======
 
@@ -109,6 +117,14 @@ if sales_on:
         minimum=1.0
     )
 
+# Sales by year filter
+sales_by_year = (
+    filtered_df
+    .groupby("Year", as_index=False)[sales_col]
+    .sum()
+    .sort_values("Year")
+)
+
 # =======================
 # UPDATE TABLE PLACEHOLDER
 # =======================
@@ -119,11 +135,11 @@ table_placeholder.dataframe(
     ), hide_index=True
 )
 
-# Placeholder for map (could later use plotly or pydeck)
-st.header(f"Interactive Sales Map ({st.session_state.region})")
-st.write("Map feature coming here... for now just a placeholder")
-
-# ====================
-# FUTURE FEATURES
-# ====================
-st.write("Additional features can be added here: charts, graphs, or interactive maps.")
+# Sales by year chart update
+with chart_container:
+    st.subheader("Sales by Year")
+    st.line_chart(
+        data=sales_by_year,
+        x="Year",
+        y=sales_col
+    )
