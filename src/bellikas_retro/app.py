@@ -42,6 +42,8 @@ st.markdown("![neon](app/static/neonsign.png)")
 # MAIN DISPLAY
 # ====================
 
+controls_container = st.container()
+controls_container.empty()
 # ====== Sales per year chart ======
 
 chart_container = st.container()
@@ -65,42 +67,42 @@ table_placeholder = st.empty()
 # ============================
 # CONTROLS
 # ============================
+with controls_container:
+    col1, col2 = st.columns(2)
 
-col1, col2 = st.columns(2)
+    with col1:
+        on = st.toggle("Activate Nostalgia Age Filter")
+    with col2:
+        sales_on = st.toggle("Activate Min Sales Filter")
 
-with col1:
-    on = st.toggle("Activate Nostalgia Age Filter")
-with col2:
-    sales_on = st.toggle("Activate Min Sales Filter")
+    # Age input
+    age_input = st.number_input("Insert age",min_value=17, max_value=60)
+    st.write("The current age is ", age_input)
 
-# Age input
-age_input = st.number_input("Insert age",min_value=17, max_value=60)
-st.write("The current age is ", age_input)
+    age_range = nostalgia_age_filter(int(age_input))
 
-age_range = nostalgia_age_filter(int(age_input))
-
-# Select region
-region = st.radio(
-    "Select region to display sales",
-    ("NA", "EU", "JP","OTHER","GLOBAL")
-)
-
-region_map = {
-    "NA": "NA_Sales",
-    "EU": "EU_Sales",
-    "JP": "JP_Sales",
-    "OTHER": "Other_Sales",
-    "GLOBAL": "Global_Sales"
-}
-sales_col = region_map[region]
-
-# Year slider ===========
-years = sorted(df["Year"].dropna().unique())
-selected_year = st.select_slider(
-    "Release Year", 
-    options=years,
-    value=years[0]
+    # Select region
+    region = st.radio(
+        "Select region to display sales",
+        ("NA", "EU", "JP","OTHER","GLOBAL")
     )
+
+    region_map = {
+        "NA": "NA_Sales",
+        "EU": "EU_Sales",
+        "JP": "JP_Sales",
+        "OTHER": "Other_Sales",
+        "GLOBAL": "Global_Sales"
+    }
+    sales_col = region_map[region]
+
+    # Year slider ===========
+    years = sorted(df["Year"].dropna().unique())
+    selected_year = st.select_slider(
+        "Release Year", 
+        options=years,
+        value=years[0]
+        )
 
 # =======================
 # FILTER DATA
