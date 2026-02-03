@@ -6,6 +6,7 @@ from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly.express as px
 from pathlib import Path
 
 import streamlit.components.v1 as components
@@ -48,7 +49,8 @@ chart_container.empty()
 
 # ====== Genre/Platform comparison chart ======
 
-
+bar_ch_container = st.container()
+bar_ch_container.empty()
 
 # ====== Top 10 chart ======
 
@@ -125,6 +127,22 @@ sales_by_year = (
     .sort_values("Year")
 )
 
+# Genre/Platform comparison filter
+platform_genre_sales = (
+    filtered_df
+    .groupby(["Platform", "Genre"])["Global_Sales"]
+    .sum()
+    .reset_index()
+)
+
+fig = px.bar(
+    platform_genre_sales,
+    x="Platform",
+    y="Global_Sales",
+    color="Genre",
+    title="Global Sales by Platform and Genre",
+)
+
 # =======================
 # UPDATE TABLE PLACEHOLDER
 # =======================
@@ -143,3 +161,6 @@ with chart_container:
         x="Year",
         y=sales_col
     )
+
+with bar_ch_container:
+    st.plotly_chart(fig, width='stretch')
