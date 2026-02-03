@@ -22,14 +22,7 @@ def nostalgia_age_filter(age: int, start_age: int = 8, end_age: int = 14) -> set
 
 VALID_REGIONS = {"NA_Sales", "EU_Sales", "JP_Sales", "Other_Sales", "Global_Sales"}
 
-data = { 
-    "Name": ["Game A", "Game B", "Game C"],
-    "EU_Sales": [1.2, 0.3, 2.5],
-    "NA_Sales": [0.8, 1.1, 3.0],
-    # "Year": [2010, 2010, 2011],  # Exempel om du vill använda top_10_games_by_year
-}
 
-df = pd.DataFrame(data)
 
 
 def filter_sales(df: pd.DataFrame, region: str, minimum: float) -> pd.DataFrame:
@@ -67,8 +60,3 @@ def top_10_games_by_year(
     # Valfritt: returnera bara de mest relevanta kolumnerna
     cols = [name_col, year_col, region]
     return tmp[cols].reset_index(drop=True)
-
-
-# Exempel: filtrera på EU_Sales >= 1.0
-filtered = filter_sales(df, "EU_Sales", 1.0)
-print(filtered)
