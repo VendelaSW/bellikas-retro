@@ -12,6 +12,7 @@ from pathlib import Path
 import streamlit.components.v1 as components
 
 
+
 # ====================
 # SESSION STATE
 # ====================
@@ -54,7 +55,8 @@ bar_ch_container.empty()
 
 # ====== Top 10 chart ======
 
-
+hbar_ch_container = st.container()
+hbar_ch_container.empty()
 
 # ======= Table placeholder =======
 
@@ -143,6 +145,23 @@ fig = px.bar(
     title="Global Sales by Platform and Genre",
 )
 
+# Top 10 filter
+top_10 = (
+    filtered_df.sort_values("Global_Sales", ascending=False)
+    .head(10)
+    .sort_values("Global_Sales")
+)
+
+ax = px.bar(
+    top_10,
+    y="Name",
+    x="Global_Sales",
+    orientation="h",
+    title="Top 10 Best-Selling Games (Global)",
+    color="Global_Sales",
+    text="Global_Sales"
+)
+
 # =======================
 # UPDATE TABLE PLACEHOLDER
 # =======================
@@ -164,3 +183,6 @@ with chart_container:
 
 with bar_ch_container:
     st.plotly_chart(fig, width='stretch')
+
+with hbar_ch_container:
+    st.plotly_chart(ax, width="stretch")
