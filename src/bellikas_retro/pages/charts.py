@@ -118,20 +118,37 @@ st.subheader(f"Sales by Year ({region})")
 sales_by_year = (
     filtered_df
     .dropna(subset=["Year"])
-    .groupby("Year", as_index=False)[sales_col]
-    .sum()
-    .sort_values("Year")
+    .groupby("Year")
+    .agg(
+        total_sales=(sales_col, "sum"),
+        unique_games=("Name", "nunique"),
+    )
+    .reset_index()
 )
 
-fig_year = px.line(
+sales_by_year["avg_sales_per_game"] = (
+    sales_by_year["total_sales"] / sales_by_year["unique_games"]
+)
+
+fig_total = px.line(
     sales_by_year,
     x="Year",
-    y=sales_col,
+    y="total_sales",
     markers=True,
-    title=f"{region} Sales by Year",
+    title=f"Total {region} Sales by Year",
 )
 
-st.plotly_chart(fig_year, width='stretch')
+st.plotly_chart(fig_total, width='stretch')
+
+fig_avg = px.line(
+    sales_by_year,
+    x="Year",
+    y="avg_sales_per_game",
+    markers=True,
+    title=f"Average {region} Sales per Game by Year",
+)
+
+st.plotly_chart(fig_avg, width='stretch')
 
 # =======================
 # CHART 2: PLATFORM x GENRE (REGION)
