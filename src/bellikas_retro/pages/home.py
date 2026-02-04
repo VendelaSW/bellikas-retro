@@ -1,11 +1,12 @@
 import streamlit as st
 from bellikas_retro.app_state import init_session_state
 from bellikas_retro.utils import PROJECT_ROOT
+from bellikas_retro.utils.config import NEON_IMAGE_PATH
 
 init_session_state()
 
 st.image(
-    image=PROJECT_ROOT / "src" / "bellikas_retro" / "static" / "neonsign.png",
+    image=PROJECT_ROOT / NEON_IMAGE_PATH,
     width="stretch",
 )
 

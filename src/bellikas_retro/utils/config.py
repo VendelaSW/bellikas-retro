@@ -7,7 +7,7 @@ KAGGLE_DATASET_PATH = "gregorut/videogamesales"
 
 SESSION_KEYS = ['region', 'year_range']
 
-NEON_IMAGE_PATH = 'app/static/neonsign.png'
+NEON_IMAGE_PATH = "src" "/" "bellikas_retro" "/" "static" "/" "neonsign.png"
 
 APP_TITLE = "Bellika's Retro: Retro Game Sales Dashboard"
 
@@ -24,12 +24,11 @@ REGION_COLUMN_MAP = {
     'EU': 'EU_Sales',
     'JP': 'JP_Sales',
     'OTHER': 'Other_Sales',
-    'GLOBAL': 'Global Sales',
+    'GLOBAL': 'Global_Sales',
 }
 
 MIN_AGE = 17 
 MAX_AGE = 60
-MIN_SALES_DEFAULT = 1.0
 
 import logging
 LOG_LEVEL = logging.WARNING
