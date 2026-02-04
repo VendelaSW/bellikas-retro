@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-#import plotly.express as px
+import plotly.express as px
 
 from bellikas_retro.app_state import init_session_state, load_data, REGION_MAP
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
