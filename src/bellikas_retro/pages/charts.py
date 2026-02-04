@@ -22,7 +22,7 @@ with col2:
 sales_col = REGION_MAP[region]
 st.session_state.region = region
 
-age_input = st.number_input("Insert age", min_value=17, max_value=60, value=25)
+age_input = st.number_input("Insert age", min_value=17, max_value=60, value=25, key="charts_age")
 age_range = nostalgia_age_filter(int(age_input))
 
 filtered_df = df[df["Year"].isin(age_range)].copy()
