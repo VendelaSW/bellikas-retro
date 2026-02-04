@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from bellikas_retro.app_state import init_session_state, load_data, REGION_MAP
+from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
+from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, REGIONS, TOGGLE_SALES_LABEL, MAX_AGE, MIN_AGE, AGE_INPUT_LABEL
 
 init_session_state()
 df = load_data()
@@ -15,14 +16,20 @@ st.title("Charts")
 # =======================
 col1, col2 = st.columns(2)
 with col1:
-    sales_on = st.toggle("Activate Min Sales Filter")
+    sales_on = st.toggle(TOGGLE_SALES_LABEL)
 with col2:
-    region = st.radio("Select region", ("NA", "EU", "JP", "OTHER", "GLOBAL"))
+    region = st.radio(REGION_RADIO_LABEL, REGIONS)
 
-sales_col = REGION_MAP[region]
+sales_col = REGION_COLUMN_MAP[region]
 st.session_state.region = region
 
-age_input = st.number_input("Insert age", min_value=17, max_value=60, value=25, key="charts_age")
+age_input = st.number_input(
+    AGE_INPUT_LABEL, 
+    min_value=MIN_AGE, 
+    max_value=MAX_AGE, 
+    value=25, 
+    key="charts_age"
+)
 age_range = nostalgia_age_filter(int(age_input))
 
 filtered_df = df[df["Year"].isin(age_range)].copy()
