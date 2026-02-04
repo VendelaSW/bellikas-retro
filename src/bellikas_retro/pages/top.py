@@ -6,7 +6,46 @@ from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGIONS, TOGGLE_SALES
 init_session_state()
 df = load_data()
 
-st.title("Top Sellers")
+st.title("Top Sellers", anchor="top")
+
+st.markdown(
+"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+#top {
+  margin-top: 25px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  color: #e3ebff;
+
+  -webkit-text-stroke: 0.7px rgba(200, 215, 255, 0.6);
+  -webkit-font-smoothing: antialiased;
+
+  animation: flicker 3.0s infinite;
+
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.55),
+    0 0 3px rgba(200,220,255,0.45),
+    0 0 8px rgba(60, 140, 255, 1),
+    0 0 16px rgba(30, 110, 255, 0.95),
+    0 0 28px rgba(20, 80, 220, 0.75),
+    0 0 46px rgba(10, 60, 180, 0.65),
+    0 0 70px rgba(5, 40, 140, 0.55);
+}
+
+@keyframes flicker {
+  0%, 38%, 100% { opacity: 1; }
+  40% { opacity: 0.9; }
+  41% { opacity: 0.75; }
+  42% { opacity: 1; }
+  78% { opacity: 0.95; }
+}
+</style>
+
+""",
+unsafe_allow_html=True,
+)
 
 # Controls
 col1, col2 = st.columns(2)
