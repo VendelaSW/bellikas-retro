@@ -46,7 +46,10 @@ st.markdown(
 unsafe_allow_html=True,
 )
 
+# =======================
 # Controls
+# =======================
+
 col1, col2 = st.columns(2)
 with col1:
     sales_on = st.toggle(TOGGLE_SALES_LABEL)
@@ -60,7 +63,8 @@ age_input = st.number_input(
     AGE_INPUT_LABEL,
     min_value=MIN_AGE, 
     max_value=MAX_AGE, 
-    value=25
+    value=25,
+    key="nostalgia_age"
 )
 age_range = nostalgia_age_filter(int(age_input))
 

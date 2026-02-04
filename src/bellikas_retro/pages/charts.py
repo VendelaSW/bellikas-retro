@@ -3,8 +3,8 @@ import pandas as pd
 import plotly.express as px
 
 from bellikas_retro.app_state import init_session_state, load_data
-from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
-from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, REGIONS, TOGGLE_SALES_LABEL, MAX_AGE, MIN_AGE, AGE_INPUT_LABEL
+from bellikas_retro.utils.helpers import filter_sales
+from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, REGIONS, TOGGLE_SALES_LABEL
 
 init_session_state()
 df = load_data()
@@ -51,7 +51,7 @@ unsafe_allow_html=True,
 )
 
 # =======================
-# CONTROLS
+# Controls
 # =======================
 col1, col2 = st.columns(2)
 with col1:
@@ -62,16 +62,23 @@ with col2:
 sales_col = REGION_COLUMN_MAP[region]
 st.session_state.region = region
 
-age_input = st.number_input(
-    AGE_INPUT_LABEL, 
-    min_value=MIN_AGE, 
-    max_value=MAX_AGE, 
-    value=25, 
-    key="charts_age"
-)
-age_range = nostalgia_age_filter(int(age_input))
 
-filtered_df = df[df["Year"].isin(age_range)].copy()
+# =======================
+# YEAR SLIDER (NO AGE FILTER)
+# =======================
+year_min = int(df["Year"].min())
+year_max = int(df["Year"].max())
+
+year_range = st.slider(
+    "Select year range",
+    min_value=year_min,
+    max_value=year_max,
+    value=(year_min, year_max),
+    step=1,
+    key="charts_year_range",
+)
+
+filtered_df = df[df["Year"].between(year_range[0], year_range[1])].copy()
 
 # =======================
 # FILTER DATA
@@ -96,7 +103,7 @@ if sales_on and not filtered_df.empty:
     )
 
 # =======================
-# TABLE
+# Handle Empty
 # =======================
 
 if filtered_df.empty:
@@ -104,7 +111,7 @@ if filtered_df.empty:
     st.stop()
 
 # =======================
-# CHART 1: SALES BY YEAR (REGION-AWARE)
+# CHART 1: SALES BY YEAR (REGION)
 # =======================
 st.subheader(f"Sales by Year ({region})")
 
@@ -127,7 +134,7 @@ fig_year = px.line(
 st.plotly_chart(fig_year, width='stretch')
 
 # =======================
-# CHART 2: PLATFORM x GENRE (MATCH REGION INSTEAD OF GLOBAL)
+# CHART 2: PLATFORM x GENRE (REGION)
 # =======================
 st.subheader(f"{region} Sales by Platform and Genre")
 
@@ -149,24 +156,34 @@ fig_pg = px.bar(
 st.plotly_chart(fig_pg, width='stretch')
 
 # =======================
-# CHART 3: TOP 10 (MATCH REGION INSTEAD OF GLOBAL)
+# CHART 3: TOP 10 (REGION)
 # =======================
 st.subheader(f"Top 10 Best-Selling Games ({region})")
 
-top_10 = (
+by_name_platform = (
     filtered_df
-    .sort_values(sales_col, ascending=False)
-    .head(10)
-    .sort_values(sales_col)
+    .groupby(["Name", "Platform"], as_index=False)[sales_col]
+    .sum()
 )
+
+top_names = (
+    by_name_platform
+    .groupby("Name", as_index=False)[sales_col]
+    .sum()
+    .sort_values(sales_col, ascending=False)
+    .head(10)["Name"]
+)
+
+top_10_platform = by_name_platform[by_name_platform["Name"].isin(top_names)]
 
 fig_top10 = px.bar(
-    top_10,
+    top_10_platform,
     y="Name",
     x=sales_col,
+    color="Platform",
     orientation="h",
     title=f"Top 10 Best-Selling Games ({region})",
-    text=sales_col,
 )
 
+fig_top10.update_yaxes(categoryorder="total ascending")
 st.plotly_chart(fig_top10, width='stretch')
