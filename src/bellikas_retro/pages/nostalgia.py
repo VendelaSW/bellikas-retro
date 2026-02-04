@@ -5,7 +5,46 @@ from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 init_session_state()
 df = load_data()
 
-st.title("Nostalgia")
+st.title("Nostalgia", anchor="nostalgia")
+
+st.markdown(
+"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+#nostalgia {
+  margin-top: 25px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: #fff6f6;
+
+  -webkit-text-stroke: 0.7px rgba(255, 230, 230, 0.55);
+  -webkit-font-smoothing: antialiased;
+
+  animation: flicker 3.0s infinite;
+
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.9),
+    0 0 3px rgba(255,210,210,0.7),
+    0 0 8px rgba(255, 40, 40, 0.95),
+    0 0 16px rgba(255, 0, 0, 0.85),
+    0 0 28px rgba(220, 0, 0, 0.65),
+    0 0 46px rgba(160, 0, 0, 0.55),
+    0 0 70px rgba(120, 0, 0, 0.45);
+}
+
+@keyframes flicker {
+  0%, 38%, 100% { opacity: 1; }
+  40% { opacity: 0.9; }
+  41% { opacity: 0.75; }
+  42% { opacity: 1; }
+  78% { opacity: 0.95; }
+}
+</style>
+
+""",
+unsafe_allow_html=True,
+)
 
 # Controls
 col1, col2 = st.columns(2)
