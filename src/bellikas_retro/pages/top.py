@@ -47,7 +47,10 @@ st.markdown(
 unsafe_allow_html=True,
 )
 
+# =======================
 # Controls
+# =======================
+
 col1, col2 = st.columns(2)
 with col1:
     sales_on = st.toggle(TOGGLE_SALES_LABEL)

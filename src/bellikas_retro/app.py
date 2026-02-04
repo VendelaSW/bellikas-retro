@@ -7,7 +7,7 @@ pg = st.navigation(
         st.Page("pages/top.py", title="Top"),
         st.Page("pages/charts.py", title="Charts"),
     ],
-    position="top",
+    position="top"
 )
 
 st.markdown(
@@ -15,6 +15,9 @@ st.markdown(
     <style>
       .block-container {
         padding-top: 1rem;
+      }
+      .stAppHeader {
+      background: transparent !important;
       }
     </style>
     """,
