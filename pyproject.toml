@@ -12,7 +12,8 @@ requires-python = ">=3.10"
 dependencies = [
   "streamlit>=1.53.1",
   "kagglehub>=0.4.1",
-  "python-dotenv>=1.2.1"
+  "python-dotenv>=1.2.1",
+  "plotly>=6.5.2"
 ]
 
 [server]
