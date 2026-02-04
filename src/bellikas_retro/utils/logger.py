@@ -1,5 +1,5 @@
 """
-Central loggingfil för Bellikas_Retro
+Central logging file for Bellikas_Retro
 
 """
 import logging
