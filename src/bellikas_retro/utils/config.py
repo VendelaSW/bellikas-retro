@@ -7,7 +7,6 @@ KAGGLE_DATASET_PATH = "gregorut/videogamesales"
 
 SESSION_KEYS = ['region', 'year_range']
 
-DATA_DIR = 'data'
 NEON_IMAGE_PATH = 'app/static/neonsign.png'
 
 APP_TITLE = "Bellika's Retro: Retro Game Sales Dashboard"

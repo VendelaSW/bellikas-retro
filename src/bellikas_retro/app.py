@@ -62,7 +62,7 @@ with col2:
     sales_on = st.toggle("Activate Min Sales Filter")
 
 # Age input
-age_input = st.number_input("Insert age",min_value=17, max_value=60)
+age_input = st.number_input("Insert age",min_value=17, max_value=60, key="age")
 st.write("The current age is ", age_input)
 
 age_range = nostalgia_age_filter(int(age_input))
