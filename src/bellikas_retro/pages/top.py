@@ -10,22 +10,35 @@ st.title("Top Sellers", anchor="top")
 st.markdown(
 """
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
 #top {
-  color: #e2b3ff;
-  font-weight: 700;
-  animation: flicker 2.3s infinite alternate;
+  margin-top: 25px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  color: #e3ebff;
+
+  -webkit-text-stroke: 0.7px rgba(200, 215, 255, 0.6);
+  -webkit-font-smoothing: antialiased;
+
+  animation: flicker 3.0s infinite;
+
   text-shadow:
-    0 0 4px #ffffff,
-    0 0 12px rgba(214,107,255,0.9),
-    0 0 36px rgba(154,28,255,0.6);
+    0 0 1px rgba(255,255,255,0.55),
+    0 0 3px rgba(200,220,255,0.45),
+    0 0 8px rgba(60, 140, 255, 1),
+    0 0 16px rgba(30, 110, 255, 0.95),
+    0 0 28px rgba(20, 80, 220, 0.75),
+    0 0 46px rgba(10, 60, 180, 0.65),
+    0 0 70px rgba(5, 40, 140, 0.55);
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  45% { opacity: .9; }
-  50% { opacity: .7; }
-  55% { opacity: .95; }
-  100% { opacity: 1; }
+  0%, 38%, 100% { opacity: 1; }
+  40% { opacity: 0.9; }
+  41% { opacity: 0.75; }
+  42% { opacity: 1; }
+  78% { opacity: 0.95; }
 }
 </style>
 
