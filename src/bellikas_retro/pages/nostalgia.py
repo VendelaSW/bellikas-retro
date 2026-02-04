@@ -15,7 +15,7 @@ st.markdown(
 #nostalgia {
   margin-top: 25px;
   font-family: 'Great Vibes', cursive;
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: #fff6f6;
 
   -webkit-text-stroke: 0.7px rgba(255, 230, 230, 0.55);

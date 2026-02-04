@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+#import plotly.express as px
 
 from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
@@ -9,7 +9,46 @@ from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, R
 init_session_state()
 df = load_data()
 
-st.title("Charts")
+st.title("Charts", anchor='charts')
+
+st.markdown(
+"""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+#charts {
+  margin-top: 25px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 4rem;
+  color: #ffd6eb;
+
+  -webkit-text-stroke: 0.7px rgba(255, 230, 230, 0.55);
+  -webkit-font-smoothing: antialiased;
+
+  animation: flicker 3.0s infinite;
+
+  text-shadow:
+    0 0 1px rgba(255,255,255,0.35),
+    0 0 3px rgba(255,180,220,0.35),
+    0 0 8px rgba(230, 30, 150, 1),
+    0 0 16px rgba(210, 10, 130, 0.95),
+    0 0 28px rgba(180, 0, 110, 0.8),
+    0 0 46px rgba(150, 0, 90, 0.7),
+    0 0 70px rgba(120, 0, 70, 0.6);
+}
+
+@keyframes flicker {
+  0%, 38%, 100% { opacity: 1; }
+  40% { opacity: 0.9; }
+  41% { opacity: 0.75; }
+  42% { opacity: 1; }
+  78% { opacity: 0.95; }
+}
+</style>
+
+""",
+unsafe_allow_html=True,
+)
 
 # =======================
 # CONTROLS
