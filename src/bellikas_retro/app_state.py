@@ -3,17 +3,10 @@ import pandas as pd
 import streamlit as st
 
 from bellikas_retro.data_loader import download_dataset, DataLoader
-
-REGION_MAP = {
-    "NA": "NA_Sales",
-    "EU": "EU_Sales",
-    "JP": "JP_Sales",
-    "OTHER": "Other_Sales",
-    "GLOBAL": "Global_Sales",
-}
+from bellikas_retro.utils.config import SESSION_KEYS
 
 def init_session_state():
-    for key in ["region", "year_range"]:
+    for key in SESSION_KEYS:
         if key not in st.session_state:
             st.session_state[key] = None
 

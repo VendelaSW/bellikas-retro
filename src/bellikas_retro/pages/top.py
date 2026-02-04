@@ -1,6 +1,7 @@
 import streamlit as st
-from bellikas_retro.app_state import init_session_state, load_data, REGION_MAP
+from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import filter_sales
+from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGIONS, TOGGLE_SALES_LABEL, YEAR_SLIDER_LABEL
 
 init_session_state()
 df = load_data()
@@ -10,15 +11,18 @@ st.title("Top Sellers")
 # Controls
 col1, col2 = st.columns(2)
 with col1:
-    sales_on = st.toggle("Activate Min Sales Filter")
+    sales_on = st.toggle(TOGGLE_SALES_LABEL)
 with col2:
-    region = st.radio("Select region", ("NA", "EU", "JP", "OTHER", "GLOBAL"))
+    region = st.radio("Select region", REGIONS)
 
-sales_col = REGION_MAP[region]
+sales_col = REGION_COLUMN_MAP[region]
 st.session_state.region = region
 
 years = sorted(df["Year"].dropna().unique())
-selected_year = st.select_slider("Release Year", options=years, value=years[0])
+selected_year = st.select_slider(
+    YEAR_SLIDER_LABEL, 
+    options=years, 
+    value=years[0])
 
 # =======================
 # FILTER DATA

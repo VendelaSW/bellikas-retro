@@ -1,7 +1,7 @@
 import streamlit as st
-from bellikas_retro.app_state import init_session_state, load_data, REGION_MAP
+from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
-
+from bellikas_retro.utils.config import TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, REGIONS, AGE_INPUT_LABEL, MAX_AGE, MIN_AGE
 init_session_state()
 df = load_data()
 
@@ -10,14 +10,19 @@ st.title("Nostalgia")
 # Controls
 col1, col2 = st.columns(2)
 with col1:
-    sales_on = st.toggle("Activate Min Sales Filter")
+    sales_on = st.toggle(TOGGLE_SALES_LABEL)
 with col2:
-    region = st.radio("Select region", ("NA", "EU", "JP", "OTHER", "GLOBAL"))
+    region = st.radio("Select region", REGIONS)
 
-sales_col = REGION_MAP[region]
+sales_col = REGION_COLUMN_MAP[region]
 st.session_state.region = region
 
-age_input = st.number_input("Insert age", min_value=17, max_value=60, value=25)
+age_input = st.number_input(
+    AGE_INPUT_LABEL,
+    min_value=MIN_AGE, 
+    max_value=MAX_AGE, 
+    value=25
+)
 age_range = nostalgia_age_filter(int(age_input))
 
 filtered_df = df[df["Year"].isin(age_range)].copy()
