@@ -78,7 +78,7 @@ fig_year = px.line(
     title=f"{region} Sales by Year",
 )
 
-st.plotly_chart(fig_year, use_container_width=True)
+st.plotly_chart(fig_year, width='stretch')
 
 # =======================
 # CHART 2: PLATFORM x GENRE (MATCH REGION INSTEAD OF GLOBAL)
@@ -100,7 +100,7 @@ fig_pg = px.bar(
     title=f"{region} Sales by Platform and Genre",
 )
 
-st.plotly_chart(fig_pg, use_container_width=True)
+st.plotly_chart(fig_pg, width='stretch')
 
 # =======================
 # CHART 3: TOP 10 (MATCH REGION INSTEAD OF GLOBAL)
@@ -123,4 +123,4 @@ fig_top10 = px.bar(
     text=sales_col,
 )
 
-st.plotly_chart(fig_top10, use_container_width=True)
+st.plotly_chart(fig_top10, width='stretch')
