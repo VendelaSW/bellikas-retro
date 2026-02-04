@@ -5,7 +5,33 @@ from bellikas_retro.utils.helpers import filter_sales
 init_session_state()
 df = load_data()
 
-st.title("Top Sellers")
+st.title("Top Sellers", anchor="top")
+
+st.markdown(
+"""
+<style>
+#top {
+  color: #e2b3ff;
+  font-weight: 700;
+  animation: flicker 2.3s infinite alternate;
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 12px rgba(214,107,255,0.9),
+    0 0 36px rgba(154,28,255,0.6);
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  45% { opacity: .9; }
+  50% { opacity: .7; }
+  55% { opacity: .95; }
+  100% { opacity: 1; }
+}
+</style>
+
+""",
+unsafe_allow_html=True,
+)
 
 # Controls
 col1, col2 = st.columns(2)
