@@ -5,35 +5,30 @@ Central loggingfil för Bellikas_Retro
 import logging
 from pathlib import Path
 
-# -------------------------------------------------------------------
-# Paths & constants
-# -------------------------------------------------------------------
+from utils.config import LOG_LEVEL
 
 LOG_DIR = Path("logs")
 LOG_FILE = LOG_DIR / "app.log"
 
-# -------------------------------------------------------------------
-# Internal setup
-# -------------------------------------------------------------------
-
 def get_logger(name: str) -> logging.Logger:
+
     LOG_DIR.mkdir(exist_ok=True)
 
     logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(LOG_LEVEL)
 
-# -------------------------------------------------------------------
-# Public API
-# -------------------------------------------------------------------
+    if not logger.handlers:
+        formatter = logging.Formatter(
+            "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+        )
 
+        file_handler = logging.FileHandler(LOG_FILE)
+        file_handler.setFormatter(formatter)
 
-    """
-    Get a configured logger instance.
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
 
-    Args:
-        name: Typically __name__
+        logger.addHandler(file_handler)
+        logger.addHandler(console_handler)
 
-    Returns:
-        logging.Logger
-    """
-
+    return logger
