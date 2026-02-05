@@ -3,6 +3,7 @@ from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 from bellikas_retro.utils.config import TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, REGIONS, AGE_INPUT_LABEL, MAX_AGE, MIN_AGE
 init_session_state()
+
 df = load_data()
 if df.empty:
     st.warning("Dataset not available in this environment.")
