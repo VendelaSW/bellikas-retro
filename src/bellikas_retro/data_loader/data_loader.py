@@ -27,6 +27,12 @@ import pandas as pd
 
 @dataclass
 class DataLoader:
+    """
+    Loads a video game sales CSV file and lets you query it.
+
+    The data is only loaded once and then stored in memory so future
+    queries are faster.
+    """
     # Directory containing the dataset.
     data_dir: Path
 
@@ -41,10 +47,16 @@ class DataLoader:
 
     @property
     def path(self) -> Path:
+        """
+        Returns the full path to the CSV file.
+        """
         # Compute the full path to the CSV file.
         return self.data_dir / self.csv_name
 
     def load(self) -> pd.DataFrame:
+        """
+        Loads the CSV file into a pandas DataFrame (and caches it).
+        """
         # Load the dataset from disk only once.
         # Subsequent calls reuse the cached DataFrame.
         if self._df is None:
@@ -79,6 +91,10 @@ class DataLoader:
         year: Optional[Union[int, Iterable[int], range]] = None,
         genre: Optional[Union[str, Iterable[str]]] = None,
     ) -> pd.DataFrame:
+        """
+        Filters the dataset by platform, year, and genre.
+        Returns a new DataFrame with only the matching rows.
+        """
         # Ensure the dataset is loaded (from cache or disk)
         df = self.load()
 
@@ -87,6 +103,10 @@ class DataLoader:
         # {2000,2001,2002}
         # None
         def _as_set(x):
+            """
+            Converts a value or list of values into a set.
+            Returns None if no value was provided.
+            """
             if x is None:
                 return None
             if isinstance(x, (str, bytes)):
