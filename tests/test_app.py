@@ -1,5 +1,6 @@
 from streamlit.testing.v1 import AppTest
 from bellikas_retro.utils import PROJECT_ROOT
+from pathlib import Path
 
 # Test for age input in nostalgia
 def test_age_increments():
@@ -18,3 +19,18 @@ def test_age_increments():
     at.number_input("nostalgia_age").set_value(start_age + 1).run()
     assert not at.exception
     assert at.number_input("nostalgia_age").value == start_age + 1
+
+def test_pages_load():
+
+    PAGES = ["home.py", "nostalgia.py", "top.py", "charts.py"]
+    BASE_PATH = Path(__file__).parent.parent / "src" / "bellikas_retro" / "pages"
+    """Ensure all pages load without exceptions."""
+    for page_file in PAGES:
+        page_path = BASE_PATH / page_file
+        assert page_path.is_file(), f"{page_file} not found at {page_path}"
+
+        # Load and run the page
+        at = AppTest.from_file(str(page_path)).run()
+
+        # Make sure there were no exceptions
+        assert not at.exception, f"Page {page_file} failed to load: {at.exception}"
