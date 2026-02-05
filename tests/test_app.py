@@ -20,20 +20,17 @@ def test_age_increments():
     assert not at.exception
     assert at.number_input("nostalgia_age").value == start_age + 1
 
-# Test for navigation between pages
-def test_navigation_pages():
-    app_path = (PROJECT_ROOT / "src" / "bellikas_retro" / "app.py").resolve()
-    assert app_path.is_file(), f"app.py not found at: {app_path}"
+def test_pages_load():
 
-    at = AppTest.from_file(str(app_path)).run()
-    assert not at.exception, "App crashed on launch"
+    PAGES = ["home.py", "nostalgia.py", "top.py", "charts.py"]
+    BASE_PATH = Path(__file__).parent.parent / "src" / "bellikas_retro" / "pages"
+    """Ensure all pages load without exceptions."""
+    for page_file in PAGES:
+        page_path = BASE_PATH / page_file
+        assert page_path.is_file(), f"{page_file} not found at {page_path}"
 
-    nav_pages = ["Home", "Nostalgia", "Top", "Charts"]
+        # Load and run the page
+        at = AppTest.from_file(str(page_path)).run()
 
-    for page in nav_pages:
-        try:
-            at.radio("Select page").set_value(page).run()
-        except Exception as e:
-            raise AssertionError(f"Navigation to {page} failed: {e}")
-        
-        assert not at.exception, f"Exception when navigating to {page}"
+        # Make sure there were no exceptions
+        assert not at.exception, f"Page {page_file} failed to load: {at.exception}"
