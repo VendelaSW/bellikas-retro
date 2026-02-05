@@ -8,6 +8,9 @@ from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, R
 
 init_session_state()
 df = load_data()
+if df.empty:
+    st.warning("Dataset not available in this environment.")
+    st.stop()
 
 st.title("Charts", anchor='charts')
 

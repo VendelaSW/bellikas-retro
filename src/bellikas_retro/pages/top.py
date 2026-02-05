@@ -5,6 +5,9 @@ from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGIONS, TOGGLE_SALES
 
 init_session_state()
 df = load_data()
+if df.empty:
+    st.warning("Dataset not available in this environment.")
+    st.stop()
 
 st.title("Top Sellers", anchor="top")
 
