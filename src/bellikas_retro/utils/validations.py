@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Iterable
 
 # Checks that age is an integer within the allowed range.
-def validate_age(age: int, min_age: int = 27, max_age: int = 60) -> int:
+def validate_age(age: int, min_age: int = 17, max_age: int = 60) -> int:
     if not isinstance(age, int):
         raise ValueError('Age must be an integer')
     

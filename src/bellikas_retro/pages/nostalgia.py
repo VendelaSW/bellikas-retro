@@ -2,6 +2,8 @@ import streamlit as st
 from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
 from bellikas_retro.utils.config import TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, REGIONS, AGE_INPUT_LABEL, MAX_AGE, MIN_AGE
+from bellikas_retro.utils.validations import validate_age, get_sales_column, validate_min_sales
+
 init_session_state()
 df = load_data()
 
@@ -56,7 +58,12 @@ with col1:
 with col2:
     region = st.radio("Select region", REGIONS)
 
-sales_col = REGION_COLUMN_MAP[region]
+try:
+    sales_col = get_sales_column(region, REGION_COLUMN_MAP)
+except ValueError as e:
+    st.error(str(e))
+    st.stop()
+
 st.session_state.region = region
 
 age_input = st.number_input(
@@ -66,7 +73,13 @@ age_input = st.number_input(
     value=25,
     key="nostalgia_age"
 )
-age_range = nostalgia_age_filter(int(age_input))
+try:
+    age = validate_age(int(age_input), min_age=MIN_AGE, max_age=MAX_AGE)
+except ValueError as e:
+    st.warning(str(e))
+    st.stop()
+
+age_range = nostalgia_age_filter(int(age))
 
 filtered_df = df[df["Year"].isin(age_range)].copy()
 
@@ -86,6 +99,12 @@ if sales_on:
         format="%.1f",
         key="nostalgia_min_sales"
     )
+
+    try:
+        min_sales = validate_min_sales(min_sales)
+    except ValueError as e:
+        st.warning(str(e))
+        st.stop()
 
     filtered_df = filter_sales(
         df=filtered_df,
