@@ -1,9 +1,18 @@
 # Bellika's Retro
 
-[![Python][ico-python]][link-python]
-[![Streamlit][ico-streamlit]][link-streamlit]
-[![Dataset][ico-kaggle]][link-kaggle]
-[![GitHub][ico-github]][link-github-org]
+<p>
+  <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" alt="Python"></a>&nbsp;&nbsp;&nbsp;
+    
+  <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white" alt="Streamlit"></a>&nbsp;&nbsp;&nbsp;
+  
+  <a href="https://www.kaggle.com/datasets/gregorut/videogamesales" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt="Kaggle Dataset"></a>&nbsp;&nbsp;&nbsp;
+  
+  <a href="https://github.com/VendelaSW/bellikas-retro" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/GitHub-Contributors-black?logo=github" alt="GitHub"></a>
+</p>
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
 PSRs you support to avoid any confusion with users and contributors.
