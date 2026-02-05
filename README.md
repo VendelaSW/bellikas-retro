@@ -111,19 +111,3 @@ If you discover any security related issues, please email :author_email instead 
 - [All Contributors][link-contributors]
 
 ## License
-
-# Python
-[ico-python]: https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white
-[link-python]: https://www.python.org/
-
-# Streamlit
-[ico-streamlit]: https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white
-[link-streamlit]: https://streamlit.io/
-
-# Kaggle dataset
-[ico-kaggle]: https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white
-[link-kaggle]: https://www.kaggle.com/datasets/gregorut/videogamesales
-
-# GitHub
-[ico-github]: https://img.shields.io/badge/GitHub-Contributors-black?logo=github
-[link-github-org]: https://github.com/VendelaSW/bellikas-retro
