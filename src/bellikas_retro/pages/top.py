@@ -16,7 +16,7 @@ st.markdown(
 #top {
   margin-top: 25px;
   font-family: 'Great Vibes', cursive;
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: #e3ebff;
 
   -webkit-text-stroke: 0.7px rgba(200, 215, 255, 0.6);
