@@ -6,6 +6,9 @@ from bellikas_retro.utils.validations import validate_years, validate_selected_y
 
 init_session_state()
 df = load_data()
+if df.empty:
+    st.warning("Dataset not available in this environment.")
+    st.stop()
 
 st.title("Top Sellers", anchor="top")
 

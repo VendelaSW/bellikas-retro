@@ -9,6 +9,9 @@ from bellikas_retro.utils.validations import get_sales_column, validate_min_sale
 
 init_session_state()
 df = load_data()
+if df.empty:
+    st.warning("Dataset not available in this environment.")
+    st.stop()
 
 st.title("Charts", anchor='charts')
 

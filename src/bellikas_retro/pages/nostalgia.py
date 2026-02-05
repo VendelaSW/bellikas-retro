@@ -5,7 +5,11 @@ from bellikas_retro.utils.config import TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, R
 from bellikas_retro.utils.validations import validate_age, get_sales_column, validate_min_sales
 
 init_session_state()
+
 df = load_data()
+if df.empty:
+    st.warning("Dataset not available in this environment.")
+    st.stop()
 
 st.title("Nostalgia", anchor="nostalgia")
 

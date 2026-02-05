@@ -1,4 +1,4 @@
-from pathlib import Path
+from .utils import DATA_DIR, CSV_NAME
 import pandas as pd
 import streamlit as st
 
@@ -13,6 +13,14 @@ def init_session_state():
 @st.cache_data
 def load_data() -> pd.DataFrame:
     download_dataset()
-    loader = DataLoader(data_dir=Path("data"))
+
+    data_dir = DATA_DIR
+    csv_path = DATA_DIR / CSV_NAME
+
+    # If download was skipped (CI) and file isn't present, prevent crash.
+    if not csv_path.exists():
+        return pd.DataFrame()
+
+    loader = DataLoader(data_dir=data_dir)
     df = loader.load()
     return pd.DataFrame(df)
