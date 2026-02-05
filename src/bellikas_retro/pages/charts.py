@@ -5,6 +5,7 @@ import plotly.express as px
 from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import filter_sales
 from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGION_RADIO_LABEL, REGIONS, TOGGLE_SALES_LABEL
+from bellikas_retro.utils.validations import get_sales_column, validate_min_sales, validate_years
 
 init_session_state()
 df = load_data()
@@ -59,15 +60,20 @@ with col1:
 with col2:
     region = st.radio(REGION_RADIO_LABEL, REGIONS)
 
-sales_col = REGION_COLUMN_MAP[region]
+try:
+    sales_col = get_sales_column(region, REGION_COLUMN_MAP)
+except ValueError as e:
+    st.error(str(e))
+    st.stop()
+
 st.session_state.region = region
 
 
 # =======================
 # YEAR SLIDER (NO AGE FILTER)
 # =======================
-year_min = int(df["Year"].min())
-year_max = int(df["Year"].max())
+years = validate_years(df["Year"].dropna().unique())
+year_min, year_max = min(years), max(years)
 
 year_range = st.slider(
     "Select year range",
@@ -95,6 +101,12 @@ if sales_on and not filtered_df.empty:
         format="%.1f",
         key="charts_min_sales"
     )
+
+    try:
+        min_sales = validate_min_sales(min_sales)
+    except ValueError as e:
+        st.warning(str(e))
+        st.stop()
 
     filtered_df = filter_sales(
         df=filtered_df,

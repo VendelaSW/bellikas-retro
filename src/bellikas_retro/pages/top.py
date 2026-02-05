@@ -2,6 +2,7 @@ import streamlit as st
 from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import filter_sales
 from bellikas_retro.utils.config import REGION_COLUMN_MAP, REGIONS, TOGGLE_SALES_LABEL, YEAR_SLIDER_LABEL
+from bellikas_retro.utils.validations import validate_years, validate_selected_year, get_sales_column, validate_min_sales
 
 init_session_state()
 df = load_data()
@@ -57,14 +58,30 @@ with col1:
 with col2:
     region = st.radio("Select region", REGIONS)
 
-sales_col = REGION_COLUMN_MAP[region]
+try:
+    sales_col = get_sales_column(region, REGION_COLUMN_MAP)
+except ValueError as e:
+    st.error(str(e))
+    st.stop()
+
 st.session_state.region = region
 
-years = sorted(df["Year"].dropna().unique())
+try:
+    years = validate_years(sorted(df["Year"].dropna().unique()))
+except ValueError as e:
+    st.error(str(e))
+    st.stop()
+
 selected_year = st.select_slider(
     YEAR_SLIDER_LABEL, 
     options=years, 
     value=years[0])
+
+try:
+    validate_selected_year(selected_year, years)
+except ValueError as e:
+    st.error(str(e))
+    st.stop()
 
 # =======================
 # FILTER DATA
@@ -84,6 +101,12 @@ if sales_on:
         format="%.1f",
         key="top_min_sales"
     )
+
+    try:
+        min_sales = validate_min_sales(min_sales)
+    except ValueError as e:
+        st.warning(str(e))
+        st.stop()
 
     filtered_df = filter_sales(
         df=filtered_df,
