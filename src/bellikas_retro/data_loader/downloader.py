@@ -1,5 +1,6 @@
 from pathlib import Path
 from ..utils import PROJECT_ROOT, DATA_DIR, CSV_NAME, KAGGLE_DATASET_PATH, _is_ci
+import streamlit as st
 import os
 import shutil
 
@@ -17,7 +18,16 @@ def download_dataset() -> None:
 
     # Local dev only
     if not _is_ci():
-        load_dotenv(PROJECT_ROOT / ".env")
+        load_dotenv(PROJECT_ROOT / ".env", override=False)
+    
+    # Load streamlit secret
+    try:
+        token = st.secrets["kaggle_api_token"]
+        os.environ.setdefault("KAGGLE_API_TOKEN", token)
+    except (KeyError, FileNotFoundError):
+        # Replace with logging when implemented
+        print("Missing Streamlit secret. Will use env or fixtures.")
+
 
     DATA_DIR.mkdir(exist_ok=True)
 
@@ -27,7 +37,7 @@ def download_dataset() -> None:
 
     if not os.getenv("KAGGLE_API_TOKEN"):
         raise RuntimeError(
-            "Missing KAGGLE_API_TOKEN. Set it in your .env (local dev only)."
+            "Missing KAGGLE_API_TOKEN. Set it via Streamlit Secrets (kaggle_api_token) or as env var KAGGLE_API_TOKEN (local/.env or hosting)."
         )
 
     try:

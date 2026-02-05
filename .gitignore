@@ -212,3 +212,4 @@ __marimo__/
 
 # Mac
 .DS_Store
+.streamlit/secrets.toml
