@@ -10,9 +10,9 @@
   <a href="https://www.kaggle.com/datasets/gregorut/videogamesales" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
 
-<a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
-  <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status">
-</a>&nbsp;&nbsp;&nbsp;
+ <a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
+   <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status">
+ </a>&nbsp;&nbsp;&nbsp;
   
   <a href="https://github.com/VendelaSW/bellikas-retro" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/GitHub-Contributors-black?logo=github" alt=""></a>
