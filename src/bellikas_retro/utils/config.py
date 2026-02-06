@@ -15,7 +15,7 @@ TOGGLE_NOSTALGIA_LABEL = 'Activate Nostalgia Age Filter'
 TOGGLE_SALES_LABEL = 'Activate Min Sales Filter'
 
 AGE_INPUT_LABEL = 'Insert Age'
-REGION_RADIO_LABEL = 'Select Region to display Sales'
+REGION_RADIO_LABEL = 'Select Region'
 YEAR_SLIDER_LABEL = 'Release Year'
 
 REGIONS = ('NA', 'EU', 'JP', 'OTHER', 'GLOBAL')

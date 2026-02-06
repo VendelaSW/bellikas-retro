@@ -1,7 +1,7 @@
 import streamlit as st
 from bellikas_retro.app_state import init_session_state, load_data
 from bellikas_retro.utils.helpers import nostalgia_age_filter, filter_sales
-from bellikas_retro.utils.config import TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, REGIONS, AGE_INPUT_LABEL, MAX_AGE, MIN_AGE
+from bellikas_retro.utils.config import REGION_RADIO_LABEL, TOGGLE_SALES_LABEL, REGION_COLUMN_MAP, REGIONS, AGE_INPUT_LABEL, MAX_AGE, MIN_AGE
 from bellikas_retro.utils.validations import validate_age, get_sales_column, validate_min_sales
 
 init_session_state()
@@ -57,10 +57,20 @@ unsafe_allow_html=True,
 # =======================
 
 col1, col2 = st.columns(2)
+
 with col1:
+    st.markdown(
+        "## Nostalgia calculator\n"
+        "Figure out the perfect games to stock for your target audience."
+    )
     sales_on = st.toggle(TOGGLE_SALES_LABEL)
+
 with col2:
-    region = st.radio("Select region", REGIONS)
+    st.caption("") # Empty line to align with design
+    spacer, right = st.columns([1, 1])
+    with right:
+        region = st.radio(REGION_RADIO_LABEL, REGIONS)
+
 
 try:
     sales_col = get_sales_column(region, REGION_COLUMN_MAP)

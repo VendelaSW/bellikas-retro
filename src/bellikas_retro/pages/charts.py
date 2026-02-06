@@ -57,11 +57,21 @@ unsafe_allow_html=True,
 # =======================
 # Controls
 # =======================
+
 col1, col2 = st.columns(2)
+
 with col1:
+    st.markdown(
+        "## View sales charts\n"
+        "View detailed information in charts of video game sales over time and filter by region."
+    )
     sales_on = st.toggle(TOGGLE_SALES_LABEL)
+
 with col2:
-    region = st.radio(REGION_RADIO_LABEL, REGIONS)
+    st.caption("") # Empty line to align with design
+    spacer, right = st.columns([1, 1])
+    with right:
+        region = st.radio(REGION_RADIO_LABEL, REGIONS)
 
 try:
     sales_col = get_sales_column(region, REGION_COLUMN_MAP)
