@@ -2,7 +2,7 @@
 
 <p>
   <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-      <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
     
   <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
