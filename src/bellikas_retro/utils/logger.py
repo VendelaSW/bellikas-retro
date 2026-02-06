@@ -5,9 +5,9 @@ Central logging file for Bellikas_Retro
 import logging
 from pathlib import Path
 
-from utils.config import LOG_LEVEL
+from .config import LOG_LEVEL, PROJECT_ROOT
 
-LOG_DIR = Path("logs")
+LOG_DIR = PROJECT_ROOT / 'logs'
 LOG_FILE = LOG_DIR / "app.log"
 
 def get_logger(name: str) -> logging.Logger:
