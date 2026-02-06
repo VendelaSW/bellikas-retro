@@ -1,4 +1,5 @@
 from .helpers import _project_root
+import logging
 
 CSV_NAME = "vgsales.csv"
 PROJECT_ROOT = _project_root()
@@ -30,5 +31,4 @@ REGION_COLUMN_MAP = {
 MIN_AGE = 17 
 MAX_AGE = 60
 
-import logging
 LOG_LEVEL = logging.WARNING
