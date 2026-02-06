@@ -9,6 +9,10 @@
   
   <a href="https://www.kaggle.com/datasets/gregorut/videogamesales" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
+
+  <a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
+    <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status">
+  </a>&nbsp;&nbsp;&nbsp;
   
   <a href="https://github.com/VendelaSW/bellikas-retro" target="_blank" rel="noopener noreferrer">
   <img src="https://img.shields.io/badge/GitHub-Contributors-black?logo=github" alt=""></a>
@@ -54,6 +58,15 @@ Based on release year, platform, and copies sold, the results are presented thro
 The project follows a modular and scalable structure, clearly separating data handling, application logic, user interface, and utilities.  
 This design improves readability, supports collaboration, and makes the codebase easy to maintain and extend as new features are added.
 
+## CI/CD
+
+GitHub Actions runs automated tests and build checks on every push and pull request to `dev` and `main`.
+
+Pipeline includes:
+- Environment validation (`SKIP_DATA_DOWNLOAD=1`)
+- Test matrix (Python 3.10–3.13)
+- Package build sanity check
+
 ## Install
 
 **1. Create and activate a virtual environment:**
@@ -72,6 +85,8 @@ pip install -e .
 
 ## Usage
 
+This starts the Streamlit application in your browser.
+
 **Run:**
 
 ```bash
@@ -89,20 +104,26 @@ python -m bellikas_retro
 pip uninstall bellikas_retro
 ```
 
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Testing
 
+**Run all tests locally:**
+
 ``` bash
 pytest
+```
+
+**Verbose output:**
+
+``` bash
 pytest -v
 ```
 
-## Contributing
+**Quiet output:**
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
+``` bash
+pytest -q
+```
 
 ## Credits
 
