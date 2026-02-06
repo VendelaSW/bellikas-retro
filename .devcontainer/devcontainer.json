@@ -6,7 +6,7 @@
     "codespaces": {
       "openFiles": [
         "README.md",
-        "src/bellikas_retro/cli.py"
+        "src/bellikas_retro/app.py"
       ]
     },
     "vscode": {
@@ -18,9 +18,9 @@
     }
   },
   "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
-  "postAttachCommand": {
-    "server": "streamlit run src/bellikas_retro/cli.py --server.enableCORS false --server.enableXsrfProtection false"
-  },
+"postAttachCommand": {
+  "server": "streamlit run src/bellikas_retro/app.py --server.enableCORS false --server.enableXsrfProtection false"
+},
   "portsAttributes": {
     "8501": {
       "label": "Application",
