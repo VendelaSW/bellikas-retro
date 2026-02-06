@@ -31,8 +31,6 @@ Based on release year, platform, and copies sold, the results are presented thro
 │       │   ├── __init__.py
 │       │   ├── data_loader.py
 │       │   └── downloader.py
-│       ├── games/              # Game-related domain structures
-│       │   ├── __init__.py
 │       ├── pages/              # Streamlit pages and visual views
 │       │   ├── charts.py
 │       │   ├── home.py
@@ -129,6 +127,18 @@ pytest -q
 
 - [VendelaSW](https://github.com/VendelaSW) — project author  
 - All contributors: https://github.com/VendelaSW/bellikas-retro/graphs/contributors
+
+**Responsibilities:**
+
+[VendelaSW](https://github.com/VendelaSW): Streamlit frontend, UX, charts, validations, deployment
+
+[VWiman](https://github.com/VWiman): Backend, CI/CD, testing infrastructure, integration, Scrum
+
+[emmykristina](https://github.com/emmykristina): UI design, CSS, validations, documentation
+
+[folixd](https://github.com/folixd): Logging system, early testing and code quality practices
+
+[kevin3169](https://github.com/kevin3169): Helpers, thresholds, dataloader tests 
 
 ## License
 
