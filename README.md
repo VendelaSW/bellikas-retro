@@ -127,7 +127,9 @@ pytest -q
 
 ## Credits
 
-- [:author_name][link-author]
-- [All Contributors][link-contributors]
+- [VendelaSW](https://github.com/VendelaSW) — project author  
+- All contributors: https://github.com/VendelaSW/bellikas-retro/graphs/contributors
 
 ## License
+
+MIT License — see [LICENSE](LICENSE)
