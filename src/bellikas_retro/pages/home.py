@@ -112,8 +112,13 @@ div[data-testid="stMarkdownContainer"] .title-panel {
   align-items: center;
   justify-content: center;
   animation: borderGlowFlicker 4.8s infinite;
+  overflow: hidden;
 
-  padding: 2px 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 0.2px;
+  padding-right: 0.2px;
+
   background: rgba(0,0,0,0);
   border-style: solid;
   border-color: #eaf0ff;
@@ -140,11 +145,12 @@ div[data-testid="stMarkdownContainer"] .title-panel {
 div[data-testid="stMarkdownContainer"] .title-panel h1 {
   white-space: nowrap;
   display: inline-block;
-  margin: 0 !important;
+  margin-left: -45px;
+  margin-right: 1px;
   font-family: 'Neonderthaw', cursive !important;
-  font-size: 6rem !important;
-  color: #ffd6eb !important;
-  transform: translate(10px, -10px) scaleX(0.9);
+  font-size: 7rem !important;
+  color: #f6b3b3 !important;
+  transform: translate(4px, -6px) scaleX(0.8);
   line-height: 0.9;
   width: max-content;
 
@@ -154,13 +160,13 @@ div[data-testid="stMarkdownContainer"] .title-panel h1 {
   animation: flicker 3.0s infinite;
 
 text-shadow:
-  0 0 1px rgba(255, 90, 185, 0.65),
-  0 0 3px rgba(255,210,230,0.35),
-  0 0 8px rgba(255, 90, 185, 0.75),
-  0 0 16px rgba(245, 60, 165, 0.7),
-  0 0 28px rgba(220, 0, 140, 0.8),
-  0 0 46px rgba(180, 0, 120, 0.7),
-  0 0 70px rgba(140, 0, 95, 0.6);
+  0 0 2px rgba(255, 0, 0, 1),
+  0 0 3px rgba(235,200,210,0.35),
+  0 0 3px rgba(255, 20, 30, 1),
+  0 0 8px rgba(230, 10, 20, 0.95),
+  0 0 28px rgba(120, 20, 55, 0.8),
+  0 0 46px rgba(95, 12, 40, 0.7),
+  0 0 70px rgba(70, 8, 30, 0.6);
 }
 
 @keyframes flicker {
