@@ -14,43 +14,45 @@
   <img src="https://img.shields.io/badge/GitHub-Contributors-black?logo=github" alt=""></a>
 </p>
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Transforms video game sales data into clear insights, revealing retro titles that resonate with different age groups.  
+Based on release year, platform, and copies sold, the results are presented through clear and intuitive visualizations.
 
 ## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
 
 ```
     root/
 ├── src/
 │   └── bellikas_retro/
-│       ├── __init__.py
-│       ├── app.py
-│       ├── cli.py
-│       ├── games/
+│       ├── data_loader/        # Data downloading and loading logic
 │       │   ├── __init__.py
-│       │   ├── game.py
-│       │   └── game_collection.py
-│       ├── data_loader/
-│       │   ├── __init__.py
-│       │   ├── loader.py
+│       │   ├── data_loader.py
 │       │   └── downloader.py
-│       └── utils/
+│       ├── games/              # Game-related domain structures
+│       │   ├── __init__.py
+│       ├── pages/              # Streamlit pages and visual views
+│       │   ├── charts.py
+│       │   ├── home.py
+│       │   ├── nostalgia.py
+│       │   └── top.py
+│       ├── static/             # Static assets (images, media, etc.)
+│       │   ├── neonsign.png
+│       └── utils/              # Shared utilities, configuration, and validation
 │           ├── __init__.py
+│           ├── config.py
+│           ├── helpers.py
 │           ├── logger.py
-│           └── config.py
-├── tests/
-│   └── ...
-├── data/
-├── logs/
-├── .github/
-│   └── workflows/
-│       └── tests.yml
-├── pyproject.toml
-├── README.md
-└── .gitignore
+│           └── validations.py
+│       ├── __init__.py
+│       ├── app_state.py        # Application state management
+│       ├── app.py              # Main application entry point
+│       ├── cli.py              # Command-line interface
+├── tests/                      # Automated tests
+│   └── test_app.py
+├── pyproject.toml              # Project configuration and dependencies
+└── README.md
 ```
+The project follows a modular and scalable structure, clearly separating data handling, application logic, user interface, and utilities.  
+This design improves readability, supports collaboration, and makes the codebase easy to maintain and extend as new features are added.
 
 ## Install
 
@@ -100,10 +102,6 @@ $ composer test
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE_OF_CONDUCT](CODE_OF_CONDUCT.md) for details.
-
-## Security
-
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
 
 ## Credits
 
