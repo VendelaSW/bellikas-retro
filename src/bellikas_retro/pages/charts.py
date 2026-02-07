@@ -24,7 +24,7 @@ st.markdown(
   margin-top: 25px;
   font-family: 'Great Vibes', cursive;
   font-size: 4rem;
-  color: #ffd6eb;
+  color: #ffeaf3;
 
   -webkit-text-stroke: 0.7px rgba(255, 230, 230, 0.55);
   -webkit-font-smoothing: antialiased;
@@ -32,13 +32,13 @@ st.markdown(
   animation: flicker 3.0s infinite;
 
   text-shadow:
-    0 0 1px rgba(255,255,255,0.35),
-    0 0 3px rgba(255,180,220,0.35),
-    0 0 8px rgba(230, 30, 150, 1),
-    0 0 16px rgba(210, 10, 130, 0.95),
-    0 0 28px rgba(180, 0, 110, 0.8),
-    0 0 46px rgba(150, 0, 90, 0.7),
-    0 0 70px rgba(120, 0, 70, 0.6);
+    0 0 1px rgba(255,255,255,0.7),
+    0 0 4px rgba(255,230,245,0.6),
+    0 0 6px rgba(235, 60, 170, 0.95),
+    0 0 14px rgba(215, 30, 150, 0.9),
+    0 0 28px rgba(200, 40, 140, 0.85),
+    0 0 46px rgba(170, 20, 120, 0.75),
+    0 0 70px rgba(140, 10, 95, 0.65);
 }
 
 @keyframes flicker {

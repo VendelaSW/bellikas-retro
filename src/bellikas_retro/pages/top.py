@@ -23,19 +23,20 @@ st.markdown(
   font-size: 4rem;
   color: #e3ebff;
 
-  -webkit-text-stroke: 0.7px rgba(200, 215, 255, 0.6);
+  -webkit-text-stroke: 0.7px rgba(225, 235, 255, 0.7);
   -webkit-font-smoothing: antialiased;
 
   animation: flicker 3.0s infinite;
 
   text-shadow:
-    0 0 1px rgba(255,255,255,0.55),
-    0 0 3px rgba(200,220,255,0.45),
+    0 0 1px rgba(255,255,255,0.75),
+    0 0 4px rgba(235,245,255,0.65),
     0 0 8px rgba(60, 140, 255, 1),
     0 0 16px rgba(30, 110, 255, 0.95),
-    0 0 28px rgba(20, 80, 220, 0.75),
-    0 0 46px rgba(10, 60, 180, 0.65),
-    0 0 70px rgba(5, 40, 140, 0.55);
+    0 0 28px rgba(30, 100, 230, 0.85),
+    0 0 46px rgba(20, 80, 200, 0.75),
+    0 0 70px rgba(10, 60, 160, 0.65);
+
 }
 
 @keyframes flicker {
