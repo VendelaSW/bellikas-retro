@@ -66,7 +66,10 @@ div[data-testid="stMarkdownContainer"] .box ul {
 /* Dashboard title = biggest */
 div[data-testid="stMarkdownContainer"] .box h3,
 div[data-testid="stMarkdownContainer"] .box h3 span {
+  display: block;
+  text-align: center;
   margin: 0 0 8px 0;
+  margin-bottom: 0;
   font-size: 2.3rem !important;
   font-variant: small-caps;
   letter-spacing: 0.12em;
@@ -77,7 +80,8 @@ div[data-testid="stMarkdownContainer"] .box h3 span {
 
 /* “Use the top menu…” */
 div[data-testid="stMarkdownContainer"] .box > span {
-  display: block;
+  display: block !important;
+  margin-top: -30px !important;
   margin-bottom: 10px;
 
   font-size: 1.2rem !important;
@@ -149,7 +153,7 @@ div[data-testid="stMarkdownContainer"] .title-panel h1 {
   margin-right: 1px;
   font-family: 'Neonderthaw', cursive !important;
   font-size: 7rem !important;
-  color: #f6b3b3 !important;
+  color: #ffb0b0 !important;
   transform: translate(4px, -6px) scaleX(0.8);
   line-height: 0.9;
   width: max-content;
@@ -161,9 +165,8 @@ div[data-testid="stMarkdownContainer"] .title-panel h1 {
 
 text-shadow:
   0 0 2px rgba(255, 0, 0, 1),
-  0 0 3px rgba(235,200,210,0.35),
-  0 0 3px rgba(255, 20, 30, 1),
-  0 0 8px rgba(230, 10, 20, 0.95),
+  0 0 4px rgba(255, 10, 20, 1),
+  0 0 10px rgba(235, 0, 10, 0.95),
   0 0 28px rgba(120, 20, 55, 0.8),
   0 0 46px rgba(95, 12, 40, 0.7),
   0 0 70px rgba(70, 8, 30, 0.6);
