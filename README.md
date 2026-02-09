@@ -120,19 +120,21 @@ pytest -v
 pytest -q
 ```
 
+## GitHub
+
+**Branch naming**
+
+- feature/ - New functionality
+- fix/ - Bug fixes
+- update/ - Update file
+- test/ - Adding/updating tests
+- docs/ - Documentation only
+- chore/ - Setup, config, maintenance
+
 ## Credits
 
 - [VendelaSW](https://github.com/VendelaSW) — project author  
 - All contributors: https://github.com/VendelaSW/bellikas-retro/graphs/contributors
-
-**Branch naming**
-
-feature/   New functionality
-fix/       Bug fixes
-update/    Update file
-test/      Adding/updating tests
-docs/      Documentation only
-chore/     Setup, config, maintenance
 
 **Responsibilities:**
 
