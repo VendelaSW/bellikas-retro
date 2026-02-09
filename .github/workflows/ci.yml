@@ -1,0 +1,72 @@
+name: Bellikas Retro CI
+
+# Trigger on push/pull to dev
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+# Set env to skip data download
+env:
+  SKIP_DATA_DOWNLOAD: "1"
+
+jobs:
+  # Check that env is correct
+  check-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env var
+        run: |
+          echo "SKIP_DATA_DOWNLOAD=$SKIP_DATA_DOWNLOAD"
+          test "$SKIP_DATA_DOWNLOAD" = "1"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: check-env
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Upgrade pip tooling
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+
+      - name: Install project (editable)
+        run: |
+          pip install -e .
+
+      # Run pytest (all tests) with quiet flag for less prints
+      - name: Run tests
+        run: |
+          pytest -q
+
+  # Build project to confirm it builds
+  package:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Build wheel/sdist (sanity check)
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build

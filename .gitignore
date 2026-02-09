@@ -32,6 +32,9 @@ MANIFEST
 *.manifest
 *.spec
 
+# Logs
+*.log
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -168,6 +171,10 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Ignore all data files but keep the folder
+data/*
+!data/.gitkeep
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
@@ -208,3 +215,4 @@ __marimo__/
 
 # Mac
 .DS_Store
+.streamlit/secrets.toml
