@@ -124,12 +124,12 @@ pytest -q
 
 **Branch naming**
 
-- feature/   New functionality
-- fix/       Bug fixes
-- update/    Update file
-- test/      Adding/updating tests
-- docs/      Documentation only
-- chore/     Setup, config, maintenance
+- feature/ - New functionality
+- fix/ - Bug fixes
+- update/ - Update file
+- test/ - Adding/updating tests
+- docs/ - Documentation only
+- chore/ - Setup, config, maintenance
 
 ## Credits
 
