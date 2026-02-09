@@ -11,7 +11,8 @@
   <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;
 
 <a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
-  <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
+  <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=dev" alt="CI status"></a>
+
 </p>
 
 Transforms video game sales data into clear insights, revealing retro titles that resonate with different age groups.  
@@ -123,6 +124,15 @@ pytest -q
 
 - [VendelaSW](https://github.com/VendelaSW) — project author  
 - All contributors: https://github.com/VendelaSW/bellikas-retro/graphs/contributors
+
+**Branch naming**
+
+feature/   New functionality
+fix/       Bug fixes
+update/    Update file
+test/      Adding/updating tests
+docs/      Documentation only
+chore/     Setup, config, maintenance
 
 **Responsibilities:**
 
