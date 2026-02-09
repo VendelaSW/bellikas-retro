@@ -2,19 +2,16 @@
 
 <p>
   <a href="https://www.python.org/" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
+      <img src="https://img.shields.io/badge/Python-3.13-blue?logo=python&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;
     
   <a href="https://streamlit.io/" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;
   
   <a href="https://www.kaggle.com/datasets/gregorut/videogamesales" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;
+  <img src="https://img.shields.io/badge/Dataset-Kaggle-20BEFF?logo=kaggle&logoColor=white" alt=""></a>&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
-  <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=dev" alt="CI status"></a>&nbsp;&nbsp;&nbsp;
-  
-  <a href="https://github.com/VendelaSW/bellikas-retro" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/GitHub-Contributors-black?logo=github" alt=""></a>
+<a href="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml">
+  <img src="https://github.com/VendelaSW/bellikas-retro/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status"></a>
 </p>
 
 Transforms video game sales data into clear insights, revealing retro titles that resonate with different age groups.  
